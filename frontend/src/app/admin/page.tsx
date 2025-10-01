@@ -35,8 +35,12 @@ export default function AdminPage() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(loginData.username, loginData.password);
-      setShowLoginForm(false);
+      const success = await login({ username: loginData.username, password: loginData.password });
+      if (success) {
+        setShowLoginForm(false);
+      } else {
+        alert('Login failed. Please check your credentials.');
+      }
     } catch (error) {
       console.error('Login failed:', error);
       alert('Login failed. Please check your credentials.');
