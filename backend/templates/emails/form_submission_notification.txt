@@ -1,0 +1,32 @@
+📋 NEW FORM SUBMISSION - FormFlow Platform
+==========================================
+
+Form Name: {{ form_template.name }}
+Submitted By: {{ submitted_by }}
+Date & Time: {{ submitted_at|date:"M d, Y H:i" }}
+Status: New Submission
+
+📋 SUBMISSION DETAILS
+=====================
+
+{% for field, value in form_data.items %}
+{{ field|title }}: {{ value }}
+{% endfor %}
+
+{% if files %}
+📎 UPLOADED FILES
+================
+{% for file in files %}
+• {{ file.original_filename }}
+  Size: {{ file.file_size|filesizeformat }} | Uploaded: {{ file.uploaded_at|date:"M d, Y H:i" }}
+{% endfor %}
+{% endif %}
+
+🔗 NEXT STEPS
+=============
+Access the admin panel to view the complete submission details and manage the form data.
+
+---
+FormFlow Platform - Professional Dynamic Form Management System
+This is an automated notification. Please do not reply to this email.
+© 2024 FormFlow Platform. Built for assessment purposes.
