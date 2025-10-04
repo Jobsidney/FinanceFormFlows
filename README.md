@@ -26,6 +26,12 @@ A comprehensive full-stack onboarding platform for financial services firms that
 - **RESTful API**: Complete API for all operations
 - **Comprehensive Testing**: Unit tests for all components
 
+## 📸 Screenshots
+
+![FormFlow Admin Dashboard](frontend/public/Screenshot%202025-10-04%20at%2011.04.30.png)
+
+*Admin dashboard showing the form management interface with dynamic form builder capabilities*
+
 ## 🏗️ Architecture
 
 ### Backend (Django + DRF)
