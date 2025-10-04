@@ -4,22 +4,22 @@ import { FormTemplate, FormSubmission, FormSubmissionData, CreateFormTemplateDat
 export const formTemplatesApi = {
   getAll: async (): Promise<FormTemplate[]> => {
     const response = await api.get('/api/forms/');
-    return response.data.results || response.data;
+    return response.results || response;
   },
 
   getById: async (id: number): Promise<FormTemplate> => {
     const response = await api.get(`/api/forms/${id}/`);
-    return response.data;
+    return response;
   },
 
   create: async (data: CreateFormTemplateData): Promise<FormTemplate> => {
     const response = await api.post('/api/forms/', data);
-    return response.data;
+    return response;
   },
 
   update: async (id: number, data: Partial<CreateFormTemplateData>): Promise<FormTemplate> => {
     const response = await api.patch(`/api/forms/${id}/`, data);
-    return response.data;
+    return response;
   },
 
   delete: async (id: number): Promise<void> => {
@@ -28,24 +28,24 @@ export const formTemplatesApi = {
 
   getPublic: async (id: number): Promise<FormTemplate> => {
     const response = await api.get(`/api/public/${id}/public_form/`);
-    return response.data;
+    return response;
   },
 };
 
 export const formSubmissionsApi = {
   getAll: async (): Promise<FormSubmission[]> => {
     const response = await api.get('/api/submissions/');
-    return response.data.results || response.data;
+    return response.results || response;
   },
 
   getByForm: async (formId: number): Promise<FormSubmission[]> => {
     const response = await api.get(`/api/submissions/by_form/?form_template=${formId}`);
-    return response.data;
+    return response;
   },
 
   getById: async (id: number): Promise<FormSubmission> => {
     const response = await api.get(`/api/submissions/${id}/`);
-    return response.data;
+    return response;
   },
 
   submit: async (data: FormSubmissionData): Promise<{ message: string; submission_id: number }> => {
@@ -63,7 +63,7 @@ export const formSubmissionsApi = {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data;
+    return response;
   },
 
   markProcessed: async (id: number): Promise<void> => {
@@ -74,12 +74,12 @@ export const formSubmissionsApi = {
 export const publicFormsApi = {
   getAll: async (): Promise<FormTemplate[]> => {
     const response = await api.get('/api/public/');
-    return response.data.results || response.data;
+    return response.results || response;
   },
 
   getById: async (id: number): Promise<FormTemplate> => {
     const response = await api.get(`/api/public/${id}/`);
-    return response.data;
+    return response;
   },
 
   submit: async (data: FormSubmissionData): Promise<{ message: string; submission_id: number }> => {
@@ -97,6 +97,6 @@ export const publicFormsApi = {
         'Content-Type': 'multipart/form-data',
       },
     });
-    return response.data;
+    return response;
   },
 };

@@ -44,6 +44,7 @@ export function useAuth() {
       setUser(response.user);
       return true;
     } catch (error: any) {
+      console.error('Login error:', error);
       setError(error.response?.data?.error || 'Login failed');
       return false;
     } finally {

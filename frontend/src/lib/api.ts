@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 class ApiClient {
   private baseURL: string;
@@ -13,18 +13,27 @@ class ApiClient {
   ): Promise<T> {
     const url = `${this.baseURL}${endpoint}`;
     
+    // Get auth token from localStorage
+    const token = typeof window !== 'undefined' ? localStorage.getItem('access_token') : null;
+    
     const config: RequestInit = {
       headers: {
         'Content-Type': 'application/json',
+        ...(token && { 'Authorization': `Bearer ${token}` }),
         ...options.headers,
       },
       ...options,
     };
 
     try {
+      console.log('API Request:', { url, method: config.method, headers: config.headers });
       const response = await fetch(url, config);
       
+      console.log('API Response:', { status: response.status, statusText: response.statusText });
+      
       if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error Response:', errorText);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
@@ -60,4 +69,5 @@ class ApiClient {
 
 const api = new ApiClient(API_BASE_URL);
 export default api;
+
 

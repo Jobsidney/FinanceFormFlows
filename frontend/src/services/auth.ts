@@ -34,7 +34,7 @@ class AuthService {
 
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     const response = await api.post('/api/auth/login/', credentials);
-    const { access, refresh, user } = response.data;
+    const { access, refresh, user } = response;
     
   if (typeof window !== 'undefined') {
     localStorage.setItem(this.ACCESS_TOKEN_KEY, access);
@@ -47,7 +47,7 @@ class AuthService {
 
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
     const response = await api.post('/api/auth/register/', credentials);
-    const { access, refresh, user } = response.data;
+    const { access, refresh, user } = response;
     
   if (typeof window !== 'undefined') {
     localStorage.setItem(this.ACCESS_TOKEN_KEY, access);
@@ -72,7 +72,7 @@ class AuthService {
       refresh: refreshToken
     });
     
-    const { access } = response.data;
+    const { access } = response;
     localStorage.setItem(this.ACCESS_TOKEN_KEY, access);
     
     return access;
@@ -100,7 +100,7 @@ class AuthService {
 
   async getProfile(): Promise<User> {
     const response = await api.get('/api/auth/profile/');
-    return response.data;
+    return response;
   }
 
   getCurrentUser(): User | null {
